@@ -45,6 +45,7 @@ namespace InControl
 
 		internal void UpdateWithAxes( float x, float y, ulong updateTick, float deltaTime )
 		{
+
 			lastState = thisState;
 			lastValue = thisValue;
 

@@ -14,54 +14,38 @@ public class InputBindings {
 		bindMovementActions();
 		bindCameraActions();
 		bindPlayerActions();
-		//I hate you kbob
+		// I hate you kbob
+		// Hate you too, Ty<3
 
 	}
 
 	private void bindMovementActions()
 	{
-		//LEFT
-		actionSet.MoveLeft.AddDefaultBinding( Key.A );
-		actionSet.MoveLeft.AddDefaultBinding( InputControlType.LeftStickLeft );
-
-		//RIGHT
-		actionSet.MoveRight.AddDefaultBinding( Key.D );
-		actionSet.MoveRight.AddDefaultBinding( InputControlType.LeftStickRight );
-
-		//FORWARD
-		actionSet.MoveForward.AddDefaultBinding( Key.W );
-		actionSet.MoveForward.AddDefaultBinding( InputControlType.LeftStickUp );
-
-		//BACKWARD
-		actionSet.MoveBackward.AddDefaultBinding( Key.S );
-		actionSet.MoveBackward.AddDefaultBinding( InputControlType.LeftStickDown );
+		bindDefault( actionSet.MoveLeft, Key.A, nputControlType.LeftStickLeft ); //LEFT 
+		bindDefault( actionSet.MoveRight, Key.D, InputControlType.LeftStickRight ); //RIGHT
+		bindDefault( actionSet.MoveForward, Key.W, InputControlType.LeftStickUp ); //FORWARD
+		bindDefault( actionSet.MoveBackward, Key.S, InputControlType.LeftStickDown ); //BACKWARD
 	}
 
 	private void bindCameraActions()
 	{
-		//LEFT
-		actionSet.LookLeft.AddDefaultBinding( Mouse.NegativeX );
-		actionSet.LookLeft.AddDefaultBinding( InputControlType.RightStickLeft );
-
-		//RIGHT
-		actionSet.LookRight.AddDefaultBinding( Mouse.PositiveX );
-		actionSet.LookRight.AddDefaultBinding( InputControlType.RightStickRight );
-
-		//UP
-		actionSet.LookUp.AddDefaultBinding( Mouse.PositiveY );
-		actionSet.LookUp.AddDefaultBinding( InputControlType.RightStickUp );
-
-		//LEFT
-		actionSet.LookDown.AddDefaultBinding( Mouse.NegativeY );
-		actionSet.LookDown.AddDefaultBinding( InputControlType.RightStickDown );
-
+		bindDefault( actionSet.LookLeft, Mouse.NegativeX, InputControlType.RightStickLeft ); //LEFT
+		bindDefault( actionSet.LookRight, Mouse.PositiveX, InputControlType.RightStickRight ); //RIGHT
+		bindDefault( actionSet.LookUp, Mouse.PositiveY, InputControlType.RightStickUp ); //UP
+		bindDefault( actionSet.LookDown, Mouse.NegativeY, InputControlType.RightStickDown ); //DOWN
 	}
 
 	private void bindPlayerActions()
 	{
-		//Run
-		actionSet.Run.AddDefaultBinding( Key.LeftShift );
-		actionSet.Run.AddDefaultBinding( InputControlType.RightTrigger );
+		bindDefault( actionSet.Run, Key.LeftShift, InputControlType.RightTrigger ); //Run
+		bindDefault( actionSet.Target, Key.Tab, InputControlType.LeftTrigger ); //Target
+	}
+
+	// Creates a Default binding on an action for both mouse and controller inputs
+	private void bindDefault( PlayerAction action, Mouse mouseInput, InputControlType controllerInput )
+	{
+		action.AddDefaultBinding( mouseInput );
+		action.AddDefaultBinding( controllerInput );
 	}
 	
 }

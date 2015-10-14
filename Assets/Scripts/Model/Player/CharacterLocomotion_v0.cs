@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CharacterLocomotion : MonoBehaviour {
+public class CharacterLocomotion_v0 : MonoBehaviour {
 
 	[SerializeField]
 	private Animator animator;
@@ -30,6 +30,7 @@ public class CharacterLocomotion : MonoBehaviour {
 
 	public bool isInLocomotion{ get{ return stateInfo.nameHash == m_LocomotionID; } }
 
+	private Vector2 moveForce;
 
 	// Use this for initialization
 	void Start () {
@@ -48,24 +49,31 @@ public class CharacterLocomotion : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {
+	void Update () {
 		if(bindings != null)
 		{
 			stateInfo = animator.GetCurrentAnimatorStateInfo(0);
 
-			if( actions.Move.IsPressed )
-			{
-				ApplyMoveValue( actions.Move.Value );
-			}
+			CalculateMoveValue( actions.Move.Value );
+			
 		}
+	}
+
+	void FixedUpdate()
+	{
+		ApplyMoveValue( moveForce );
+	}
+
+	public void CalculateMoveValue( Vector2 force )
+	{
+		moveForce = force;
+		InputToWorldSpace( force, this.transform, pivotObject.transform, ref direction, ref speed );
+		animator.SetFloat( "Speed", speed );
+		animator.SetFloat( "Direction", direction, directionDampTime, Time.deltaTime );
 	}
 
 	public void ApplyMoveValue( Vector2 force )
 	{
-		InputToWorldSpace( force, this.transform, pivotObject.transform, ref direction, ref speed );
-		animator.SetFloat( "Speed", speed );
-		animator.SetFloat( "Direction", direction, directionDampTime, Time.deltaTime );
-
 		if( isInLocomotion && ( ( direction >= 0 && force.x >= 0 ) || ( direction < 0 && force.x < 0 ) ) )
 		{
 			Vector3 newRotationY = new Vector3( 0f, rotationDegreePerSecond * ( force.x < 0f ? -1f : 1f), 0f );

@@ -4,22 +4,48 @@ using System.Collections;
 public class PlayerCharacter : MonoBehaviour {
 	
 	private InputBindings inputBindings;
-	private CharacterLocomotion locomotion;
+	private PlayerLocomotion locomotion;
+
+	[SerializeField]
 	private PlayerCamera camera;
+	public PlayerCamera Camera{ get{ return camera; } }
 
 	// Use this for initialization
 	void Start () {
 	
 		inputBindings = new InputBindings();
-		locomotion = GetComponent<CharacterLocomotion>() as CharacterLocomotion;
-		locomotion.Init( inputBindings );
-
-		camera = GameObject.FindObjectOfType<PlayerCamera>() as PlayerCamera;
-		camera.Init( inputBindings.Actions );
+		loadComponents();
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 		
+		handleCamera();
+
 	}
+
+	void FixedUpdate () {
+
+	}
+
+	void LateUpdate () {
+		
+	}
+
+	private void loadComponents()
+	{
+		if( camera == null )
+			camera = GameObject.FindObjectOfType<PlayerCamera>() as PlayerCamera;
+	}
+
+	// Handles the camera functions each frame
+	private void handleCamera()
+	{
+		if( camera )
+		{
+
+			 
+
+		}
+	}
+	
 }

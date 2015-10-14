@@ -7,7 +7,7 @@ public class Rotation {
 	{
 		Vector3 direction = ( toDirection - fromTransform.position ).normalized;
 		Quaternion lookRotation = Quaternion.LookRotation( direction );
-		return Quaternion.Slerp( fromTransform.rotation, lookRotation, Time.deltaTime * speed );
+		return Quaternion.Lerp( fromTransform.rotation, lookRotation, Time.fixedDeltaTime * speed );
 	}
 
 }
