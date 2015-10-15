@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Utilities : MonoBehaviour {
+public class IActorLocomotion : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

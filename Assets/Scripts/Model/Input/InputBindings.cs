@@ -21,7 +21,7 @@ public class InputBindings {
 
 	private void bindMovementActions()
 	{
-		bindDefault( actionSet.MoveLeft, Key.A, nputControlType.LeftStickLeft ); //LEFT 
+		bindDefault( actionSet.MoveLeft, Key.A, InputControlType.LeftStickLeft ); //LEFT 
 		bindDefault( actionSet.MoveRight, Key.D, InputControlType.LeftStickRight ); //RIGHT
 		bindDefault( actionSet.MoveForward, Key.W, InputControlType.LeftStickUp ); //FORWARD
 		bindDefault( actionSet.MoveBackward, Key.S, InputControlType.LeftStickDown ); //BACKWARD
@@ -37,6 +37,12 @@ public class InputBindings {
 
 	private void bindPlayerActions()
 	{
+		bindDefault( actionSet.NormalAttack, Key.LeftShift, InputControlType.Action2 ); //Normal Attck
+		bindDefault( actionSet.HeavyAttack, Key.LeftShift, InputControlType.Action1 ); //Heavy Attack
+		bindDefault( actionSet.Interact, Key.LeftShift, InputControlType.Action4 ); //Interact
+		bindDefault( actionSet.Dodge, Key.LeftShift, InputControlType.Action3 ); //Dodge
+		bindDefault( actionSet.NextItem, Key.LeftShift, InputControlType.DPadRight ); //Next Item
+		bindDefault( actionSet.PreviousItem, Key.LeftShift, InputControlType.DPadLeft ); //Previous Item
 		bindDefault( actionSet.Run, Key.LeftShift, InputControlType.RightTrigger ); //Run
 		bindDefault( actionSet.Target, Key.Tab, InputControlType.LeftTrigger ); //Target
 	}
@@ -45,6 +51,13 @@ public class InputBindings {
 	private void bindDefault( PlayerAction action, Mouse mouseInput, InputControlType controllerInput )
 	{
 		action.AddDefaultBinding( mouseInput );
+		action.AddDefaultBinding( controllerInput );
+	}
+
+	// Creates a Default binding on an action for both keyboard and controller inputs
+	private void bindDefault( PlayerAction action, Key keyInput, InputControlType controllerInput )
+	{
+		action.AddDefaultBinding( keyInput );
 		action.AddDefaultBinding( controllerInput );
 	}
 	

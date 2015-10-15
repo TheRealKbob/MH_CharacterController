@@ -33,7 +33,7 @@ public struct PlayerActions
 {
 	public static string NORMAL_ATTACK = "NORMAL_ATTACK";
 	public static string HEAVY_ATTACK = "HEAVY_ATTACK";
-	public static string USE = "USE";
+	public static string INTERACT = "INTERACT";
 	public static string DODGE = "DODGE";
 	public static string RUN = "RUN";
 	public static string TARGET = "TARGET";
@@ -70,7 +70,7 @@ public class CharacterActions : PlayerActionSet {
 	// Face Buttons
 	public PlayerAction NormalAttack;
 	public PlayerAction HeavyAttack;
-	public PlayerAction Use;
+	public PlayerAction Interact;
 	public PlayerAction Dodge;
 
 	// Top (Trigger) Buttons
@@ -125,7 +125,7 @@ public class CharacterActions : PlayerActionSet {
 	{
 		NormalAttack = initializeAction( PlayerActions.NORMAL_ATTACK );
 		HeavyAttack = initializeAction( PlayerActions.HEAVY_ATTACK );
-		Use = initializeAction( PlayerActions.USE );
+		Interact = initializeAction( PlayerActions.INTERACT );
 		Dodge = initializeAction( PlayerActions.DODGE );
 		Run = initializeAction( PlayerActions.RUN );
 		Target = initializeAction( PlayerActions.TARGET );
